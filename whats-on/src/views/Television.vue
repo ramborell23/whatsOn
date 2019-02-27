@@ -6,10 +6,10 @@
         <ol>
             <li v-for="tvshow in tvList" v-bind:key="tvshow.id">
                 <img v-bind:src="'http://image.tmdb.org/t/p/w92/'+tvshow.poster_path" alt='movie poster'/><br/>
-                <router-link :to="{ name: 'Television',   params: { showid: tvshow.id }}">{{tvshow.name }}<br/></router-link>
+                <router-link :to="{ name: 'TelevisionItem',   params: { showid: tvshow.id }}">{{tvshow.name }}<br/></router-link>
                     Rating: {{tvshow.vote_average }}<br/>
                     Release Date: {{tvshow.release_date}}<br/>
-                    <br/>
+                    
                     {{tvshow.overview}}<br/>
                     <br/>
             </li>
