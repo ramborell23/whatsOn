@@ -1,32 +1,42 @@
 <template>
-<div class=trending_tv>
-    <h3>Trending TV Shows</h3>
+<!-- <div> -->
+<div class="_movies">
+    <h3> Movies</h3>
     <div>
         {{message}}
         <ol>
             <li v-for="movie in moviesList" v-bind:key="movie.id">
-                {{movie.name }}<br/>
-                Rating: {{movie.vote_average }}<br/>
-                Release Date: {{movie.first_air_date}}<br/>
                 <img v-bind:src="'http://image.tmdb.org/t/p/w92/'+movie.poster_path" alt='movie poster'/>
+                <router-link :to="{ name: 'MoviesItems',   params: { movieid: movie.id }}">{{movie.title }}<br/></router-link>
+                Rating: {{movie.vote_average }}<br/>
+                <!-- {{console.log(this.$route.params)}} -->
+                Release Date: {{movie.release_date}}<br/>
+                <br/>
+                {{movie.overview}}<br/>
                 <!-- {{console.log("movie_image")}} -->
                 <br/>
             </li>
         </ol>
     </div>
 </div>
+<!-- </div> -->
 </template>
 
 <script>
 import axios from 'axios'
 
 export default {
-    name: 'TrendingMovies',
+    name: 'Movies',
+    components: {
+        // TrendingMovies,
+        // TrendingTV
+    },
     data() {
         return {
             moviesList: {},
             message: "Our message",
         }
+        console.log(this.$route.params)
     },
     created() {
         this.fetchData()
@@ -37,36 +47,34 @@ export default {
     methods: {
         fetchData() {
             axios
-                .get('https://api.themoviedb.org/3/trending/tv/week?api_key=ff219f24cf866a850c34d6a49bdaf425&language=en-US&region=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2019/')
+                .get('https://api.themoviedb.org/3/movie/now_playing?api_key=ff219f24cf866a850c34d6a49bdaf425&language=en-US&page=1&region=US')
                 .then((resp) => {
                     this.moviesList = resp.data.results
-                    console.log("resp==>", this.moviesList)
+                    console.log("resp22==>", this.moviesList)
                 })
                 .catch((err) => {
                     //   console.log(err)
                 })
-
         }
     }
 
 }
 </script>
 
-<style >
-
-.trending_tv h3 {
+<style>
+._movies h3 {
     position: sticky;
     top: 0;
-    background-color: red;
+    background-color: orange;
     height: 1.5em;
     margin: 0;
 }
 
-.trending_tv {
-    width: 40%;
-    border: 1em black solid;
+._movies {
+    /* width: 40%; */
+    border: 1em blue solid;
     overflow: scroll;
-    max-height: 500px;
-    max-width: 30%;
+    /* max-height: 500px;
+    max-width: 30%; */
 }
 </style>

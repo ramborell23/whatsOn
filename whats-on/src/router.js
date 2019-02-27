@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import About from './views/About.vue'
-import Test from './components/Test.vue'
+import Movies from './views/Movies.vue'
+import Television from './views/Television.vue'
+import MovieItem from './components/MovieItem.vue'
+import TelevisionItem from './components/TelevisionItem.vue'
 
 Vue.use(Router)
 
@@ -14,6 +16,26 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home,
+    },
+    {
+      path: '/movies',
+      name: 'movies',
+      component: Movies,
+    },
+    {
+      path: '/movies/:movieid',
+      name: 'MoviesItems',
+      component: MovieItem,
+    },
+    {
+      path: '/tv',
+      name: 'Television',
+      component: Television,
+    },
+    {
+      path: '/tv/:showid',
+      name: 'TelevisionItem',
+      component: TelevisionItem,
     },
     {
       path: '/about',
