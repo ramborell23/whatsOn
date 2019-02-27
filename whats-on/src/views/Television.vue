@@ -1,25 +1,21 @@
 <template>
-<!-- <div> -->
 <div class="television">
     <h3> TV Shows</h3>
     <div>
         {{message}}
         <ol>
-            <li v-for="movie in moviesList" v-bind:key="movie.id">
-                <img v-bind:src="'http://image.tmdb.org/t/p/w92/'+movie.poster_path" alt='movie poster'/>
-                <router-link :to="{ name: 'MoviesItems',   params: { movieid: movie.id }}">{{movie.title }}<br/></router-link>
-                Rating: {{movie.vote_average }}<br/>
-                <!-- {{console.log(this.$route.params)}} -->
-                Release Date: {{movie.release_date}}<br/>
-                <br/>
-                {{movie.overview}}<br/>
-                <!-- {{console.log("movie_image")}} -->
-                <br/>
+            <li v-for="tvshow in tvList" v-bind:key="tvshow.id">
+                <img v-bind:src="'http://image.tmdb.org/t/p/w92/'+tvshow.poster_path" alt='movie poster'/><br/>
+                <router-link :to="{ name: 'Television',   params: { showid: tvshow.id }}">{{tvshow.name }}<br/></router-link>
+                    Rating: {{tvshow.vote_average }}<br/>
+                    Release Date: {{tvshow.release_date}}<br/>
+                    <br/>
+                    {{tvshow.overview}}<br/>
+                    <br/>
             </li>
         </ol>
     </div>
 </div>
-<!-- </div> -->
 </template>
 
 <script>
@@ -33,8 +29,9 @@ export default {
     },
     data() {
         return {
-            moviesList: {},
+            tvList: {},
             message: "Our message",
+            loaded: false
         }
         console.log(this.$route.params)
     },
@@ -45,16 +42,16 @@ export default {
         '$route': 'fetchData'
     },
     methods: {
-        fetchData() {
-            axios
-                .get('https://api.themoviedb.org/3/tv/popular?api_key=ff219f24cf866a850c34d6a49bdaf425&language=en-US&page=1')
-                .then((resp) => {
-                    this.moviesList = resp.data.results
-                    console.log("resp22==>", this.moviesList)
-                })
-                .catch((err) => {
-                    //   console.log(err)
-                })
+        async fetchData() {
+            try {
+                let response = await axios.get('https://api.themoviedb.org/3/tv/popular?api_key=ff219f24cf866a850c34d6a49bdaf425&language=en-US&page=1')
+                this.tvList = response.data.results
+                return this.tvList
+            } catch (error) {
+                console.error(error)
+            } finally {
+                this.loaded = true
+            }
         }
     }
 

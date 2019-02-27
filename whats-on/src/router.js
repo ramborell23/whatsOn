@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Movies from './views/Movies.vue'
+import Television from './views/Television.vue'
 import MovieItem from './components/MovieItem.vue'
 
 Vue.use(Router)
@@ -24,6 +25,11 @@ export default new Router({
       path: '/movies/:movieid',
       name: 'MoviesItems',
       component: MovieItem,
+    },
+    {
+      path: '/tv',
+      name: 'Television',
+      component: Television,
     },
     {
       path: '/about',
