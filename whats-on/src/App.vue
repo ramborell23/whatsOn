@@ -2,7 +2,7 @@
   <div id="app">
     <div id="">
       <router-link to="/">Home</router-link> |
-      <router-link to="/popular">Popular</router-link> |
+      <!-- <router-link to="/popular">Popular</router-link> | -->
       <router-link to="/tv">TV</router-link> |
       <router-link to="/movies">Movies</router-link> |
       <router-link to="/discover">Discover</router-link> |

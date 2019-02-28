@@ -13,6 +13,16 @@
     <img v-bind:src="'http://image.tmdb.org/t/p/w92/'+movie.poster_path" alt='movie poster'/>
     <!-- {{console.log("movie_image")}} -->
     <br/>
+    <br/>
+    
+    <iframe id="existing-iframe-example"
+        width="540" height="260"
+        src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1"
+        frameborder="0"
+        style="border: solid 4px #37474F"
+></iframe>
+    <br/>
+    <br/>
     <router-link :to="{ name: 'home' }">Back</router-link>
 </div>
 </template>

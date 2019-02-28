@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import Discover from './views/Discover.vue'
 import Movies from './views/Movies.vue'
 import Television from './views/Television.vue'
+
 import MovieItem from './components/MovieItem.vue'
 import TelevisionItem from './components/TelevisionItem.vue'
 
@@ -36,6 +38,11 @@ export default new Router({
       path: '/tv/:showid',
       name: 'TelevisionItem',
       component: TelevisionItem,
+    },
+    {
+      path: '/discover',
+      name: 'Discover',
+      component: Discover,
     },
     {
       path: '/about',
