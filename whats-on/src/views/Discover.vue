@@ -9,12 +9,46 @@
     style="text-shadow: 0px 0px 2px #000"
     fade
     indicators
-    img-width="1024"
-    img-height="480"
+    img-width="124"
+    img-height="280"
   >
-    <b-carousel-slide caption="First slide" img-src="https://picsum.photos/1024/480/?image=10" />
+  
+
+<!-- <img v-bind:src="'http://image.tmdb.org/t/p/w185/'+moviesTopList[0].poster_path" alt='movie poster'/> -->
+ <b-carousel-slide>
+        <img
+          slot="img"
+          class="d-block img-fluid w-100"
+          width="324"
+          height="280"
+          v-bind:src="'http://image.tmdb.org/t/p/w154/' + moviesTopList[0].poster_path"
+          alt="image slot"
+        />
+      </b-carousel-slide>
+ <b-carousel-slide>
+        <img
+          slot="img"
+          class="img-fluid w-100"
+          width="324"
+          height="280"
+          v-bind:src="'http://image.tmdb.org/t/p/w154/' + moviesTopList[1].poster_path"
+          alt="image slot"
+        />
+      </b-carousel-slide>
+ <b-carousel-slide>
+        <img
+          slot="img"
+          class="d-block img-fluid w-100"
+          width="84"
+          height="230"
+          v-bind:src="'http://image.tmdb.org/t/p/w154/' + moviesTopList[2].poster_path"
+          alt="image slot"
+        />
+      </b-carousel-slide>
+    <!-- <b-carousel-slide caption="First slide" img-src="'http://image.tmdb.org/t/p/w92/'+ moviesTopList[0].poster_path" />
     <b-carousel-slide caption="Second Slide" img-src="https://picsum.photos/1024/480/?image=12" />
-    <b-carousel-slide caption="Third Slide" img-src="https://picsum.photos/1024/480/?image=22" />
+    <b-carousel-slide caption="Third Slide" img-src="https://picsum.photos/1024/480/?image=22" /> -->
+
   </b-carousel>
 </div>
     {{message}}
@@ -57,8 +91,9 @@ import Flickity from 'vue-flickity';
 //         }
 //     });
 // }
-export default {
 
+export default {
+    
     name: 'Movies',
     components: {
         Flickity
@@ -68,6 +103,7 @@ export default {
     data() {
         return {
             moviesList: {},
+            moviesTopList:{},
             message: "Our message",
             flickityOptions: {
                 initialIndex: 3,
@@ -93,7 +129,9 @@ export default {
                 .get('https://api.themoviedb.org/3/movie/now_playing?api_key=ff219f24cf866a850c34d6a49bdaf425&language=en-US&page=1&region=US')
                 .then((resp) => {
                     this.moviesList = resp.data.results
+                    this.moviesTopList = this.moviesList.slice(0,5)
                     console.log("resp22==>", this.moviesList)
+                    console.log("top movies==>", this.moviesTopList[1])
                 })
                 .catch((err) => {
                     //   console.log(err)
