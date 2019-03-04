@@ -2,6 +2,27 @@
 <div class="television">
     <h3> TV Shows</h3>
     <div>
+         <ul id="example-1" class="list-of-articles">
+            <template v-for="(article, index) in tvNewsStories" class="home-card-item" style="max-width:50em">
+                <b-card v-bind:key="index" v-bind:title="article.title" v-bind:img-src="article.urlToImage" img-alt="Image" img-top tag="article"  class="home-article"  bg-variant="secondary">
+                    <b-card-text class="home-card-main-text">
+                        <!-- <h3>{{}}</h3> -->
+                        <!-- Author: {{ article.author }}<br/> -->
+                        <!-- Some quick example text to build on the card title and make up the bulk of the card's content. -->
+                        {{article.description}}
+                    </b-card-text>
+
+                    <b-button href="#" variant="primary">Go somewhere</b-button>
+                    <b-card-text class="subtext">
+                        <!-- {{article.description}}  -->
+                        Author: {{ article.author }}<br/>
+    </b-card-text>
+                </b-card>
+                <!-- Title: {{ article.title }}<br/> -->
+                <!-- Author: {{ article.author }}<br/> -->
+                <!-- <img v-bind:src="article.urlToImage" alt="movie poster"/> -->
+            </template>
+        </ul>
         {{message}}
         <ol>
             <li v-for="tvshow in tvList" v-bind:key="tvshow.id">
@@ -14,6 +35,8 @@
                     <br/>
             </li>
         </ol>
+
+        
     </div>
 
     
@@ -32,23 +55,40 @@ export default {
     data() {
         return {
             tvList: {},
+            tvNewsStories: {},
             message: "Our message",
             loaded: false
         }
         console.log(this.$route.params)
     },
     created() {
-        this.fetchData()
+        this.fetchTvNews(),
+        this.fetchTvShows()
+
     },
     watch: {
-        '$route': 'fetchData'
+        '$route': 'fetchTvShows',
+        '$route': 'fetchTvNews'
     },
     methods: {
-        async fetchData() {
+        async fetchTvShows() {
             try {
-                let response = await axios.get('https://api.themoviedb.org/3/tv/popular?api_key=ff219f24cf866a850c34d6a49bdaf425&language=en-US&page=1')
-                this.tvList = response.data.results
+                let movieResponse = await axios.get('https://api.themoviedb.org/3/tv/popular?api_key=ff219f24cf866a850c34d6a49bdaf425&language=en-US&page=1')
+                this.tvList = movieResponse.data.results
                 return this.tvList
+            } catch (error) {
+                console.error(error)
+            } finally {
+                this.loaded = true
+            }
+        },
+        async fetchTvNews() {
+            try {
+                let newsResponse = await axios.get('https://newsapi.org/v2/?sources=entertainment-weekly&apiKey=d8f43c15633f47498f56dbe32ca3f7e6')
+                this.tvNewsStories = newsResponse.data.articles
+                console.log("GOT BOTH,this.tvNewsStories")
+                console.log(this.tvNewsStories)
+                return this.tvNewsStories
             } catch (error) {
                 console.error(error)
             } finally {

@@ -13,6 +13,7 @@
     "bootstrap-vue": "^2.0.0-rc.13",
     "flickity": "^2.2.0",
     "lodash": "^4.17.11",
+    "newsapi": "^2.4.0",
     "vue": "^2.6.7",
     "vue-flickity": "^1.1.2",
     "vue-router": "^3.0.1",

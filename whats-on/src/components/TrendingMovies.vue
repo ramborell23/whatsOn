@@ -66,10 +66,10 @@ export default {
 }
 
 .trending_movies {
-    width: 40%;
+    /* width: 40%;
     border: 1em black solid;
     overflow: scroll;
     max-height: 500px;
-    max-width: 30%;
+    max-width: 30%; */
 }
 </style>
