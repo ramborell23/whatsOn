@@ -1,7 +1,7 @@
 <template>
 <!-- <div> -->
 <div class="_movies">
-    <h3> Movies</h3>
+    <h3> In Theaters</h3>
     <div>
         {{message}}
         <ol>

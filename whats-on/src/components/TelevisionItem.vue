@@ -4,15 +4,13 @@
     <p>Symbol: {{ coin.symbol }}</p>
     <p>Price (USD): {{ coin.price_usd }}</p>
     <br/> -->
-    <br/>
-    
+    <!-- <br/> -->
     {{movie.title }}<br/>
-                Rating: {{movie.vote_average }}<br/>
-                Release Date: {{movie.first_air_date}}<br/>
-                Budget: {{movie.budget}}<br/>
-    <img v-bind:src="'http://image.tmdb.org/t/p/w92/'+movie.poster_path" alt='movie poster'/>
-    <!-- {{console.log("movie_image")}} -->
-    <br/>
+    Rating: {{movie.vote_average }}<br/>
+    Release Date: {{movie.first_air_date}}<br/>
+    Budget: {{movie.budget}}<br/>
+    Last Air Date: {{movie.last_air_date}}<br/>
+    <img v-bind:src="'http://image.tmdb.org/t/p/w92/'+movie.poster_path" alt='movie poster'/><br/>
     <router-link :to="{ name: 'home' }">Back</router-link>
 </div>
 </template>
