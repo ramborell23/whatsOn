@@ -13,9 +13,9 @@
         <br/> -->
         <!-- <router-view></router-view> -->
         <ul id="example-1" class="list-of-articles">
-            <template v-for="(article, index) in movie_news" class="home-card-item" style="max-width:50em">
-                <b-card v-bind:key="index" v-bind:title="article.title" v-bind:img-src="article.urlToImage" img-alt="Image" img-top tag="article"  class="home-article"  bg-variant="secondary">
-                    <b-card-text class="home-card-main-text">
+            <template v-for="(article, index) in movie_news" class="homepage-card-item" style="max-width:50em">
+                <b-card v-bind:key="index" v-bind:title="article.title" v-bind:img-src="article.urlToImage" img-alt="Image" img-top tag="article"  class="homepage-article"  bg-variant="secondary">
+                    <b-card-text class="homepage-card-main-text" >
                         <!-- <h3>{{}}</h3> -->
                         <!-- Author: {{ article.author }}<br/> -->
                         <!-- Some quick example text to build on the card title and make up the bulk of the card's content. -->
@@ -28,9 +28,6 @@
                         Author: {{ article.author }}<br/>
     </b-card-text>
                 </b-card>
-                <!-- Title: {{ article.title }}<br/> -->
-                <!-- Author: {{ article.author }}<br/> -->
-                <!-- <img v-bind:src="article.urlToImage" alt="movie poster"/> -->
             </template>
         </ul>
 
@@ -86,7 +83,7 @@ export default {
     methods: {
         mounted() {
              axios
-                .get(`https://newsapi.org/v2/everything?q=movie theater OR netflix OR hulu OR Amazon Prime Video&pageSize=50&apiKey=d8f43c15633f47498f56dbe32ca3f7e6`)
+                .get(`https://newsapi.org/v2/top-headlines?sources=entertainment-weekly&pageSize=15&apiKey=d8f43c15633f47498f56dbe32ca3f7e6`)
                 .then((resp) => {
                     this.movie_news = resp.data.articles
                     console.log("MOie==>", this.movie_news)
@@ -101,36 +98,86 @@ export default {
 
 <style>
 .home {
-    display: flex;
-    justify-content: space-between;
+    /* display: flex; */
+    /* justify-content: space-between; */
 }
 
-.home-article{
+.homepage-article{
     color:white;
-    position: relative;
-    left: 0em !important;
-    bottom: 0em !important;
+    /* position: relative;
+    left: 0em !important; */
+    /* bottom: 0em !important; */
     max-width: 20em !important;
+    /* max-width: 15em !important; */
     margin-bottom: 2em;
+    /* margin-left: 2em; */
 } 
 
 
 .home-article:nth-child(5){
-    color:white;
+    /* color:white;
     position: relative;
     left: 0em !important;
     bottom: 0em !important;
     max-width: 40% !important;
     margin-bottom: 2em;
-    margin-left: 40em;
+    margin-left: 40em; */
 } 
-.home-article:first-child{
+.homepage-article:nth-child(2){
     color:white;
-    position: relative;
+    /* margin: auto; */
+    /* position: relative;
     left: 0em !important;
-    bottom: 0em !important;
-    max-width: 90%!important;
-    margin: auto;
+    bottom: 0em !important;*/
+    /* max-width: 40% !important;  */
+    /* min-width: 30% !important; 
     margin-bottom: 2em;
+    margin-left: 3em;  */
 } 
+.card-body{
+    /* min-width: 40% !important; */
+
+}
+.homepage-article:nth-child(3){
+    color:white;
+    /* position: relative; */
+    /* left: 0em !important;
+    margin: auto; */
+    /* bottom: 0em !important; */
+    /* max-width: 40% !important; */
+    /* min-width: 40% !important; */
+    /* max-height: 40% !important; */
+    /* margin-bottom: 2em;
+    margin-left: 27em;
+    bottom: 28.5em; */
+} 
+.homepage-article:nth-child(4){
+    color:white;
+    /* position: relative; */
+    /* left: 0em !important; */
+    /* margin: auto; */
+    /* bottom: 0em !important; */
+    /* max-width: 40% !important; */
+    /* max-height: 40% !important; */
+    /* margin-bottom: 2em;
+    margin-left: 27em;
+    bottom: 28.5em; */
+} 
+.homepage-article:first-child{
+    color:white;
+    /* max-height: 40% !important;
+    position: relative;  */
+    /* left: 0em !important; */
+    /* bottom: 0em !important;*/
+    max-width: 91.3%!important;
+    margin-bottom: 1em; 
+} 
+
+.list-of-articles{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* margin: auto; */
+    justify-content:space-evenly;
+}
 </style>

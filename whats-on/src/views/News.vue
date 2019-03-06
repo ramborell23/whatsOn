@@ -1,23 +1,30 @@
 <template>
 <div class="television">
-    <h3>On Tonight</h3>
+    <h3>News</h3>
     <div>
-        <!-- <ul id="example-1" class="list-of-articles">
+        <ul id="example-1" class="list-of-articles">
             <template v-for="(article, index) in tvNewsStories" class="home-card-item" style="max-width:50em">
                 <b-card v-bind:key="index" v-bind:title="article.title" v-bind:img-src="article.urlToImage" img-alt="Image" img-top tag="article" class="home-article" bg-variant="secondary">
                     <b-card-text class="home-card-main-text">
+                        <!-- <h3>{{}}</h3> -->
+                        <!-- Author: {{ article.author }}<br/> -->
+                        <!-- Some quick example text to build on the card title and make up the bulk of the card's content. -->
                         {{article.description}}
                     </b-card-text>
 
                     <b-button href="#" variant="primary">Go somewhere</b-button>
                     <b-card-text class="subtext">
+                        <!-- {{article.description}}  -->
                         Author: {{ article.author }}<br/>
     </b-card-text>
                 </b-card>
+                <!-- Title: {{ article.title }}<br/> -->
+                <!-- Author: {{ article.author }}<br/> -->
+                <!-- <img v-bind:src="article.urlToImage" alt="movie poster"/> -->
             </template>
-        </ul> -->
+        </ul>
         {{message}}
-        <ol>
+        <!-- <ol>
             <li v-for="tvshow in tvList" v-bind:key="tvshow.id">
                 <img v-bind:src="'http://image.tmdb.org/t/p/w92/'+tvshow.poster_path" alt='movie poster'/><br/>
                 <router-link :to="{ name: 'TelevisionItem',   params: { showid: tvshow.id }}">{{tvshow.name }}<br/></router-link>
@@ -27,7 +34,7 @@
                     {{tvshow.overview}}<br/>
                     <br/>
             </li>
-        </ol>
+        </ol> -->
 
     </div>
 
