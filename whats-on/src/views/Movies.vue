@@ -9,11 +9,9 @@
                 <img v-bind:src="'http://image.tmdb.org/t/p/w92/'+movie.poster_path" alt='movie poster'/>
                 <router-link :to="{ name: 'MoviesItems',   params: { movieid: movie.id }}">{{movie.title }}<br/></router-link>
                 Rating: {{movie.vote_average }}<br/>
-                <!-- {{console.log(this.$route.params)}} -->
                 Release Date: {{movie.release_date}}<br/>
                 <br/>
                 {{movie.overview}}<br/>
-                <!-- {{console.log("movie_image")}} -->
                 <br/>
             </li>
         </ol>
@@ -63,17 +61,17 @@ export default {
 
 <style>
 ._movies h3 {
-    position: sticky;
+    /* position: sticky; */
     top: 0;
-    background-color: orange;
+    /* background-color: orange; */
     height: 1.5em;
     margin: 0;
 }
 
 ._movies {
     /* width: 40%; */
-    border: 1em blue solid;
-    overflow: scroll;
+    /* border: 1em blue solid; */
+    /* overflow: scroll; */
     /* max-height: 500px;
     max-width: 30%; */
 }

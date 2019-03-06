@@ -82,7 +82,7 @@ export default {
         },
         async fetchTvNews() {
             try {
-                let newsResponse = await axios.get('https://newsapi.org/v2/top-headlines?sources=entertainment-weekly&apiKey=d8f43c15633f47498f56dbe32ca3f7e6')
+                let newsResponse = await axios.get('https://newsapi.org/v2/everything?sources=entertainment-weekly&sizeBy=100&apiKey=d8f43c15633f47498f56dbe32ca3f7e6')
                 this.tvNewsStories = newsResponse.data.articles
                 console.log("GOT BOTH,this.tvNewsStories")
                 console.log(this.tvNewsStories)
@@ -99,19 +99,5 @@ export default {
 </script>
 
 <style>
-.television h3 {
-    position: sticky;
-    top: 0;
-    background-color: orange;
-    height: 1.5em;
-    margin: 0;
-}
 
-.television {
-    /* width: 40%; */
-    border: 1em blue solid;
-    overflow: scroll;
-    /* max-height: 500px;
-    max-width: 30%; */
-}
 </style>

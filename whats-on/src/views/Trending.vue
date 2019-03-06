@@ -35,8 +35,5 @@ export default {
 </script>
 
 <style>
-.home {
-  display: flex;
-  justify-content: space-between;
-}
+/*  */
 </style>

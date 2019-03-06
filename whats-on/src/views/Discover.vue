@@ -189,65 +189,65 @@ export default {
 
 <style>
 .discover h3 {
-    position: sticky;
-    top: 0;
+    /* position: sticky; */
+    /* top: 0;
     background-color: orange;
     height: 1.5em;
-    margin: 0;
+    margin: 0; */
 }
 
 .discover {
     /* width: 40%; */
-    border: 1em blue solid;
+    /* border: 1em blue solid;
     overflow: scroll;
-    background-color: rgb(73, 67, 67)
+    background-color: rgb(73, 67, 67) */
     /* max-height: 500px;
     max-width: 30%; */
 }
 
 * {
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
 }
 
 body {
-    font-family: sans-serif;
+    /* font-family: sans-serif; */
 }
 
 .img-item{
-    height: 25rem;
-    max-width: 100%;
+    /* height: 25rem;
+    max-width: 100%; */
 }
 
 .img-carousel{
     /* width: 28%; */
     /* height: 200px; */
-    border: rgb(40, 41, 44) inset 8px;
-    margin: auto;
+    /* border: rgb(40, 41, 44) inset 8px;
+    margin: auto; */
   /* width: 50%; */
   /* border: 3px solid green; */
   /* padding: 10px; */
 }
 
 .carousel {
-    background: #EEE;
+    /* background: #EEE; */
 }
 
 .carousel-cell {
-    width: 66%;
+    /* width: 66%;
     height: 200px;
     margin-right: 10px;
     background: #8C8;
     border-radius: 5px;
-    counter-increment: carousel-cell;
+    counter-increment: carousel-cell; */
 }
 
 /* cell number */
 .carousel-cell:before {
-    display: block;
+    /* display: block;
     text-align: center;
     content: content(carousel-cell);
     line-height: 200px;
     font-size: 80px;
-    color: white;
+    color: white; */
 }
 </style>

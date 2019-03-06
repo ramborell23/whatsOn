@@ -2,16 +2,33 @@
 <div class=trending_tv>
     <h3>Trending TV Shows</h3>
     <div>
-        {{message}}
         <ol>
-            <li v-for="movie in moviesList" v-bind:key="movie.id">
+             <template v-for="movie in moviesList" >
+                <b-card v-bind:key="movie.id" style="color:black;">
+                    <b-media no-body>
+                        <b-media-aside vertical-align="center">
+                         <img v-bind:src="'http://image.tmdb.org/t/p/w185/'+movie.poster_path" slot="aside" blank blank-color="#ccc"  alt="placeholder" width="128" height="256"/>
+                            <!-- <b-img v-bind:src="'http://image.tmdb.org/t/p/w92/'+tvshow.poster_path" alt='movie poster' blank blank-color="#ccc" width="128" height="256" /> -->
+                        </b-media-aside>
+
+                        <b-media-body class="ml-3">
+                            <h5 class="mt-0">{{movie.name}}</h5>
+                            <p>
+                                Rating: {{movie.vote_average }}<br/>
+                                 {{movie.overview}}<br/>.
+                            </p>
+
+                        </b-media-body>
+                    </b-media>
+                </b-card>
+            </template>
+            <!-- <li >
                 {{movie.name }}<br/>
-                Rating: {{movie.vote_average }}<br/>
+                
                 Release Date: {{movie.first_air_date}}<br/>
                 <img v-bind:src="'http://image.tmdb.org/t/p/w92/'+movie.poster_path" alt='movie poster'/>
-                <!-- {{console.log("movie_image")}} -->
                 <br/>
-            </li>
+            </li> -->
         </ol>
     </div>
 </div>
@@ -53,13 +70,19 @@ export default {
 </script>
 
 <style >
+@import url('https://fonts.googleapis.com/css?family=Shrikhand');
 
 .trending_tv h3 {
-    position: sticky;
+    /* position: sticky; */
     top: 0;
-    background-color: red;
+    color:white;
+    /* background-color: white; */
     height: 1.5em;
     margin: 0;
+    font-family: 'Shrikhand', cursive;
+    text-align: center;
+    margin-bottom: 1em;
+
 }
 
 .trending_tv {
@@ -68,5 +91,6 @@ export default {
     overflow: scroll;
     max-height: 500px;
     max-width: 30%; */
+    margin-top: 3em;
 }
 </style>

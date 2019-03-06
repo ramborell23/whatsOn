@@ -2,32 +2,25 @@
 <div class="television">
     <h3>On Tonight</h3>
     <div>
-        <!-- <ul id="example-1" class="list-of-articles">
-            <template v-for="(article, index) in tvNewsStories" class="home-card-item" style="max-width:50em">
-                <b-card v-bind:key="index" v-bind:title="article.title" v-bind:img-src="article.urlToImage" img-alt="Image" img-top tag="article" class="home-article" bg-variant="secondary">
-                    <b-card-text class="home-card-main-text">
-                        {{article.description}}
-                    </b-card-text>
+        <ul>
+            <template v-for="tvshow in tvList">
+                <b-card v-bind:key="tvshow.id" style="color:black;">
+                    <b-media no-body>
+                        <b-media-aside vertical-align="center">
+                         <img v-bind:src="'http://image.tmdb.org/t/p/w185/'+tvshow.poster_path" slot="aside" blank blank-color="#ccc"  alt="placeholder" width="128" height="256"/>
+                        </b-media-aside>
 
-                    <b-button href="#" variant="primary">Go somewhere</b-button>
-                    <b-card-text class="subtext">
-                        Author: {{ article.author }}<br/>
-    </b-card-text>
+                        <b-media-body class="ml-3">
+                            <h5 class="mt-0">{{tvshow.name }}</h5>
+                            <p>
+                                 {{tvshow.overview}}<br/>.
+                            </p>
+
+                        </b-media-body>
+                    </b-media>
                 </b-card>
             </template>
-        </ul> -->
-        {{message}}
-        <ol>
-            <li v-for="tvshow in tvList" v-bind:key="tvshow.id">
-                <img v-bind:src="'http://image.tmdb.org/t/p/w92/'+tvshow.poster_path" alt='movie poster'/><br/>
-                <router-link :to="{ name: 'TelevisionItem',   params: { showid: tvshow.id }}">{{tvshow.name }}<br/></router-link>
-                    Rating: {{tvshow.vote_average }}<br/>
-                    Release Date: {{tvshow.release_date}}<br/>
-
-                    {{tvshow.overview}}<br/>
-                    <br/>
-            </li>
-        </ol>
+        </ul>
 
     </div>
 
@@ -59,13 +52,14 @@ export default {
     },
     watch: {
         '$route': 'fetchTvShows',
-        '$route': 'fetchTvNews'
+        // '$route': 'fetchTvNews'
     },
     methods: {
         async fetchTvShows() {
             try {
                 let movieResponse = await axios.get('https://api.themoviedb.org/3/tv/airing_today?api_key=ff219f24cf866a850c34d6a49bdaf425&language=en&page=1')
                 this.tvList = movieResponse.data.results
+                console.log(this.tvList)
                 return this.tvList
             } catch (error) {
                 console.error(error)
@@ -92,19 +86,29 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Shrikhand');
+
 .television h3 {
-    position: sticky;
+    /* position: sticky; */
     top: 0;
-    background-color: orange;
+    /* background-color: orange; */
     height: 1.5em;
     margin: 0;
+    font-family: 'Shrikhand', cursive;
+    text-align: center;
+    margin-bottom:1em;
 }
 
 .television {
     /* width: 40%; */
-    border: 1em blue solid;
+    /* border: 1em blue solid; */
+    color: white;
     overflow: scroll;
     /* max-height: 500px;
     max-width: 30%; */
+    margin-top:3em;
+}
+.b-card{
+    color:black;
 }
 </style>

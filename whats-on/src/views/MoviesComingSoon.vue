@@ -1,8 +1,8 @@
 <template>
 <!-- <div> -->
 
-<div class="discover">
-    <h3> Coming Soon </h3>
+<div class="coming-soon">
+    <h3 class="comingsoon-title"> Coming Soon </h3>
     <div class="img-carousel">
         <b-carousel id="carousel1" style="text-shadow: 1px 1px 2px #333;" controls indicators background="#ababab" :interval="4000" img-width="1024" img-height="480" v-model="slide" @sliding-start="onSlideStart" @sliding-end="onSlideEnd">
 
@@ -63,11 +63,9 @@
 
         </b-carousel>
     </div>
-    {{message}}
-    <br/>
-    <br/>
-    <br/>
-    <br/>
+   
+   
+
     <br/>
     <br/>
     <br/>
@@ -173,22 +171,9 @@ export default {
 </script>
 
 <style>
-.discover h3 {
-    position: sticky;
-    top: 0;
-    background-color: orange;
-    height: 1.5em;
-    margin: 0;
-}
+@import url('https://fonts.googleapis.com/css?family=Shrikhand');
 
-.discover {
-    /* width: 40%; */
-    /* border: 1em blue solid; */
-    overflow: scroll;
-    background-color: rgb(73, 67, 67)
-        /* max-height: 500px;
-    max-width: 30%; */
-}
+
 
 * {
     box-sizing: border-box;
@@ -204,14 +189,12 @@ body {
 }
 
 .img-carousel {
-    /* width: 28%; */
-    /* height: 200px; */
+
     border: rgb(40, 41, 44) inset 8px;
     margin: auto;
-    /* width: 50%; */
-    /* border: 3px solid green; */
-    /* padding: 10px; */
-    max-width: 25em;
+
+    max-width: 30%;
+    /* max-height: 60%; */
 }
 
 .carousel1 {
@@ -236,7 +219,17 @@ body {
     font-size: 80px;
     color: white;
 }
+.comingsoon-title{
+    font-family: 'Shrikhand', cursive;
+    text-align: center;
+    color: white;
+    margin-bottom: .5em;
+    font-size: 2em;
 
+}
+.coming-soon{
+    margin-top: 1em;
+}
 .coming-soon-movie{
     max-width: 80%;
     margin: auto;
@@ -245,4 +238,15 @@ body {
     flex-direction: row !important;
 }
 
+.theater-body{
+    margin-top: 1em;
+}
+.theater-body h3{
+    color:white;
+    font-family: 'Shrikhand', cursive;
+    text-align: center;
+    margin-bottom: .5em;
+    font-size: 2em;
+
+}
 </style>

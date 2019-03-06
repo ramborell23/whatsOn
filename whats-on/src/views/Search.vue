@@ -1,20 +1,24 @@
 <template>
-<div class="about">
+<div class="search">
     <h1>This is an search page</h1>
     <br/>
     <br/>
     <br/>
-    <b-button :pressed.sync="myMovieToggle" v-on:click="setQueryToMovies" variant="primary">Movies</b-button>
-    <b-button :pressed.sync="myTvToggle" v-on:click="setQueryToTv" variant="primary">TV</b-button>
-    <b-button :pressed.sync="myPeopleToggle" v-on:click="setQueryToPeople" variant="primary">People</b-button>
-    <br/>
-    <input v-model="searchTerm" placeholder="edit me">
+    <div class="searchbar-and-buttons">
+
+    <div class="group-buttons">
+    <b-button :pressed.sync="myMovieToggle" v-on:click="setQueryToMovies" style="width:5em;" variant="primary">Movies</b-button>
+    <b-button :pressed.sync="myTvToggle" v-on:click="setQueryToTv" style="width:5em;" variant="primary">TV</b-button>
+    <b-button :pressed.sync="myPeopleToggle" v-on:click="setQueryToPeople" style="width:5em;" variant="primary">People</b-button>
+    </div>
+  
+    <input class="searchbar" v-model="searchTerm" placeholder="edit me">
     <b-button v-on:click="fetchSearchInfo" size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
+    </div>
     <p>Message is: {{ searchTerm }}</p>
     <br/>
     <br/>
     <div v-if="this.queryType === 'person'">
-        kk
         <div>
             <template v-for="(actor, index) in moviesList">
                 <b-card v-bind:key="index">
@@ -148,3 +152,31 @@ export default {
     }
 }
 </script>
+
+<style>
+.group-buttons{
+    text-align: center;
+    /* border: 3px solid green; */
+}
+
+.searchbar-and-buttons{
+     margin: auto;
+  width: 50%;
+  /* border: 3px solid green; */
+  padding: 10px;
+  text-align:center;
+}
+
+.search{
+    height: 100%;
+    width: 100%;
+    color: white
+}
+.searchbar{
+    /* text-align: center;
+    border: 3px solid green; */
+    width: 11em;
+}
+
+
+</style>
