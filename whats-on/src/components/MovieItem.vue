@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="show-movie-item">
     <!-- <p>Name: {{ coin.name }}</p>
     <p>Symbol: {{ coin.symbol }}</p>
     <p>Price (USD): {{ coin.price_usd }}</p>
@@ -17,7 +17,7 @@
     <br/>
     
     <div class="embeded-video">
-    <b-embed  type="iframe" aspect="16by9" v-bind:src="'https://www.youtube.com/embed/'+movie_video[0].key" allowfullscreen />
+    <!-- <b-embed  type="iframe" aspect="16by9" v-bind:src="'https://www.youtube.com/embed/'+movie_video[0].key" allowfullscreen /> -->
     </div>
     <br/>
     <br/>
@@ -132,6 +132,9 @@ export default {
 ul {
     /* background-color: orange */
 }
+body{
+    color: white;
+}
 
 .list-of-articles {
     /* display: flex; */
@@ -190,8 +193,9 @@ ul {
     /* background-color: white */
 }
 
-.movie-card-item p {}
-
+.show-movie-item{
+    color: white;
+}
 .article-title {
     font-size: 15px;
 }

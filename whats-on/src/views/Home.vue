@@ -26,6 +26,9 @@
                     <b-card-text class="subtext">
                         <!-- {{article.description}}  -->
                         Author: {{ article.author }}<br/>
+                        Source: {{ article.source.name }}<br/>
+                        <!-- Date: {{ datetmz }}<br/> -->
+                        Date: {{ result(article.publishedAt) }}<br/>
     </b-card-text>
                 </b-card>
             </template>
@@ -48,8 +51,22 @@
 // import TrendingMovies from '@/components/TrendingMovies.vue'
 // import TrendingTV from '@/components/TrendingTV.vue'
 import axios from 'axios'
+import { format, formatDistance, formatRelative, subDays, distanceInWords } from 'date-fns'
 const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI('d8f43c15633f47498f56dbe32ca3f7e6');
+// const isToday = require('date-fns/is_today')
+const todaysDate = new Date()
+// formatDistance(subDays(new Date(), 3), new Date())
+// console.log(format(new Date(2014, 1, 11), 'MM/DD/YYYY'))
+// console.log(formatDistance(subDays(new Date(), 3), new Date()))
+console.log(todaysDate)
+console.log( distanceInWords(
+ todaysDate,
+  new Date(2019, 0, 1)
+))
+var result = format(new Date(2014, 8, 1), 7)
+console.log(result)
+// isToday(new Date())
 let topHeadlines = {}
 
 newsapi.v2.everything({
@@ -75,11 +92,13 @@ export default {
         return {
             movie: {},
             movie_video: {},
-            movie_news: {}
+            movie_news: {},
+            
         }
     },
     created() {
-        this.mounted()
+        this.mounted(),
+        this.result()
     },
 
     watch: {
@@ -89,14 +108,19 @@ export default {
     methods: {
         mounted() {
             axios
-                .get(`https://newsapi.org/v2/top-headlines?sources=entertainment-weekly&pageSize=10&apiKey=d8f43c15633f47498f56dbe32ca3f7e6`)
+                .get(`https://newsapi.org/v2/top-headlines?sources=entertainment-weekly,buzzfeed,mashable&apiKey=d8f43c15633f47498f56dbe32ca3f7e6`)
                 .then((resp) => {
                     this.movie_news = resp.data.articles
                     console.log("MOie==>", this.movie_news)
                     // console.log("MOie==>", this.$route.params.movieid)
                 })
 
+        },
+        result : function(publishedDate){
+            console.log(todaysDate)
+            return distanceInWords(todaysDate, publishedDate)
         }
+//
     }
 }
 </script>

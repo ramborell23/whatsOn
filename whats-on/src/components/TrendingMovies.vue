@@ -6,7 +6,7 @@
         <div>
             <ul>
                  <template v-for="movie in moviesList">
-                <b-card v-bind:key="movie.id" style="color:black;" right-align >
+                <b-card v-bind:key="movie.id" style="color:black;" right-align class="in-theaters-card">
                     <b-media no-body right-align  >
                         <b-media vertical-align="center" right-align >
                          <img v-bind:src="'http://image.tmdb.org/t/p/w185/'+movie.poster_path" slot="aside" blank blank-color="#ccc"  alt="placeholder" width="128" height="256" right/>
@@ -73,7 +73,10 @@ export default {
 </script>
 
 <style >
-
+.in-theaters-card{
+    max-width: 80%;
+    margin: auto;
+}
 .trending_movies h3 {
     top: 0;
     color: white;

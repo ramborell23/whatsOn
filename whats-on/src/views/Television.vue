@@ -11,7 +11,7 @@
                         </b-media-aside>
 
                         <b-media-body class="ml-3">
-                            <h5 class="mt-0">{{tvshow.name }}</h5>
+                            <h5 class="mt-0">{{tvshow.name || "" }}</h5>
                             <p>
                                  {{tvshow.overview}}<br/>.
                             </p>

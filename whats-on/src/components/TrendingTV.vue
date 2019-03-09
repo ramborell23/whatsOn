@@ -3,7 +3,7 @@
     <h3>Trending TV Shows</h3>
     <div>
         <ol>
-             <template v-for="movie in moviesList" >
+             <template v-for="movie in moviesList" class="trending-tv-card" >
                 <b-card v-bind:key="movie.id" style="color:black;">
                     <b-media no-body>
                         <b-media-aside vertical-align="center">
@@ -72,11 +72,10 @@ export default {
 <style >
 @import url('https://fonts.googleapis.com/css?family=Shrikhand');
 
+
 .trending_tv h3 {
-    /* position: sticky; */
     top: 0;
     color:white;
-    /* background-color: white; */
     height: 1.5em;
     margin: 0;
     font-family: 'Shrikhand', cursive;
@@ -92,5 +91,24 @@ export default {
     max-height: 500px;
     max-width: 30%; */
     margin-top: 3em;
+    
+}
+
+
+
+.trending_tv ol{
+    counter-increment: section;
+    /* content: "Section " counter(section) ": "; */
+    color: white;
+}
+
+.card li::before {
+  counter-increment: section;
+  content: counters(section,".") " ";
+}
+.trending-tv-card::before{
+    counter-increment: section;
+    content: "Section " counter(section) ": ";
+    color: white;
 }
 </style>

@@ -25,14 +25,16 @@
 
                     <!-- <b-card> -->
                     <b-media v-bind:key="index">
-                        <img v-bind:src="'http://image.tmdb.org/t/p/w92/'+actor.profile_path" slot="aside" blank blank-color="#ccc" width="84" alt="placeholder" />
+                        <img v-bind:src="'http://image.tmdb.org/t/p/w92/'+actor.profile_path || 'http://sercons.ch/wp-content/uploads/2016/01/no-person.jpg'" slot="aside" blank blank-color="#ccc" width="84" alt="placeholder" />
 
                         <h3 class="mt-0">{{actor.name}}</h3>                       
                         <b-media>
                             <h5 class="mt-0">Known For</h5>
-                            <b-card v-for="(movie, index) in actor.known_for" v-bind:key="index">
-                        <b-img v-bind:img-src="'http://image.tmdb.org/t/p/w185/'+movie.poster_path" slot="aside" blank blank-color="#ccc" width="64" alt="placeholder" />
-                        <h5>{{movie.title }}</h5><br/>
+                            <b-card class="known-for-section" v-for="(movie, index) in actor.known_for" v-bind:key="index">
+                                <b-media>
+                        <img v-bind:src="'http://image.tmdb.org/t/p/w92/'+movie.poster_path " slot="aside" blank blank-color="#ccc" width="84" alt="placeholder" />
+                                </b-media>
+                        <h5>{{movie.title  || movie.name  }}</h5><br/>
                         Rating: {{movie.vote_average }}<br/>
                             Release Date: {{movie.release_date}}<br/>
         Overview: {{movie.overview}}<br/>
@@ -57,7 +59,8 @@
         <template v-for="(movie, index) in moviesList">
             <b-card v-bind:img-src="'http://image.tmdb.org/t/p/w185/'+movie.poster_path" img-alt="Movie Poster" img-right v-bind:key="index" class=coming-soon-movie>
                 <b-card-text>
-                    <router-link :to="{ name: 'MoviesItems',   params: { movieid: movie.id }}">{{movie.title }}<br/></router-link>
+                    <router-link :to="{ name: 'MoviesItems',   params: { movieid: movie.id }}">{{movie.title || movie.name }}<br/></router-link>
+                        <!-- Title: {{movie.title  }}<br/> -->
                         Rating: {{movie.vote_average ||"" }}<br/>
                             Release Date: {{movie.release_date}}<br/>
         Overview: {{movie.overview}}<br/>
@@ -166,11 +169,19 @@ export default {
   padding: 10px;
   text-align:center;
 }
-
+.known-for-section{
+    /* max-height: 13em; */
+}
 .search{
     height: 100%;
     width: 100%;
-    color: white
+    color: black;
+}
+
+.search h5{
+    /* height: 100%;
+    width: 100%; */
+    color: black;
 }
 .searchbar{
     /* text-align: center;

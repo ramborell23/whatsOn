@@ -30,11 +30,17 @@
 </div>
 </template>
 
+
 <style>
 @import url('https://fonts.googleapis.com/css?family=Shrikhand');
 html{
   height: 100%;
   background-color: rgb(24, 24, 24); 
+}
+
+body{
+  counter-reset: section;
+
 }
 #app {
     /* /* font-family: 'Avenir', Helvetica, Arial, sans-serif; */
@@ -44,7 +50,7 @@ html{
   /* color: #2c3e50; */
   /* margin-top: 60px; */
   background-color: rgb(24, 24, 24); 
-  height: 100%
+  height: 100%;
 }
 
 .home{

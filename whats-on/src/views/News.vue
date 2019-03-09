@@ -2,39 +2,27 @@
 <div class="television">
     <h3>News</h3>
     <div>
-        <ul id="example-1" class="list-of-articles">
-            <template v-for="(article, index) in tvNewsStories" class="home-card-item" style="max-width:50em">
-                <b-card v-bind:key="index" v-bind:title="article.title" v-bind:img-src="article.urlToImage" img-alt="Image" img-top tag="article" class="home-article" bg-variant="secondary">
+        <ul class="list-of-articles">
+            <template v-for="(article, index) in finArrNews" class="home-card-item" style="max-width:50em">
+                <b-card v-bind:key="index" v-bind:title="article.title" v-bind:img-src="article.urlToImage" img-alt="Image" img-top tag="article" width="64" class="newspage-article" bg-variant="secondary">
                     <b-card-text class="home-card-main-text">
                         <!-- <h3>{{}}</h3> -->
                         <!-- Author: {{ article.author }}<br/> -->
                         <!-- Some quick example text to build on the card title and make up the bulk of the card's content. -->
-                        {{article.description}}
+                        {{article.description}}<br/>
+                        <!-- {{article.content}} -->
                     </b-card-text>
 
-                    <b-button href="#" variant="primary">Go somewhere</b-button>
+                    <b-button v-bind:href="article.url" target="_blank" variant="primary">Go somewhere</b-button>
                     <b-card-text class="subtext">
                         <!-- {{article.description}}  -->
                         Author: {{ article.author }}<br/>
-    </b-card-text>
+                        Source: {{ article.source.name || ""  }}<br/>
+                        Date: {{ result(article.publishedAt) }}<br/>
+                </b-card-text>
                 </b-card>
-                <!-- Title: {{ article.title }}<br/> -->
-                <!-- Author: {{ article.author }}<br/> -->
-                <!-- <img v-bind:src="article.urlToImage" alt="movie poster"/> -->
             </template>
         </ul>
-        {{message}}
-        <!-- <ol>
-            <li v-for="tvshow in tvList" v-bind:key="tvshow.id">
-                <img v-bind:src="'http://image.tmdb.org/t/p/w92/'+tvshow.poster_path" alt='movie poster'/><br/>
-                <router-link :to="{ name: 'TelevisionItem',   params: { showid: tvshow.id }}">{{tvshow.name }}<br/></router-link>
-                    Rating: {{tvshow.vote_average }}<br/>
-                    Release Date: {{tvshow.release_date}}<br/>
-
-                    {{tvshow.overview}}<br/>
-                    <br/>
-            </li>
-        </ol> -->
 
     </div>
 
@@ -43,6 +31,16 @@
 
 <script>
 import axios from 'axios'
+var _ = require('lodash');
+
+import {
+    format,
+    formatDistance,
+    formatRelative,
+    subDays,
+    distanceInWords
+} from 'date-fns'
+const todaysDate = new Date()
 
 export default {
     name: 'Television',
@@ -54,19 +52,26 @@ export default {
         return {
             tvList: {},
             tvNewsStories: {},
+            tvNewsStoriesDos: {},
+            finArrNews:{},
             message: "Our message",
-            loaded: false
+            loaded: false,
+            
+
         }
+        // console.log(this.fetchEwNews())
         console.log(this.$route.params)
     },
     created() {
         this.fetchTvNews(),
-            this.fetchTvShows()
+        this.fetchTvShows()
+        this.fetchEwNews()
 
     },
     watch: {
         '$route': 'fetchTvShows',
-        '$route': 'fetchTvNews'
+        '$route': 'fetchTvNews',
+        '$route': 'fetchEwNews'
     },
     methods: {
         async fetchTvShows() {
@@ -82,16 +87,30 @@ export default {
         },
         async fetchTvNews() {
             try {
-                let newsResponse = await axios.get('https://newsapi.org/v2/everything?sources=entertainment-weekly&sizeBy=100&apiKey=d8f43c15633f47498f56dbe32ca3f7e6')
+                let newsResponse = await axios.get('https://newsapi.org/v2/top-headlines?country=us&category=entertainment&pageSize=100&apiKey=d8f43c15633f47498f56dbe32ca3f7e6')
                 this.tvNewsStories = newsResponse.data.articles
-                console.log("GOT BOTH,this.tvNewsStories")
-                console.log(this.tvNewsStories)
                 return this.tvNewsStories
             } catch (error) {
                 console.error(error)
             } finally {
                 this.loaded = true
             }
+        },
+        async fetchEwNews() {
+            try {
+                let firstApiNewsCall = await this.fetchTvNews()
+                let newsResponse = await axios.get('https://newsapi.org/v2/top-headlines?sources=entertainment-weekly,buzzfeed,mashable&apiKey=d8f43c15633f47498f56dbe32ca3f7e6')
+                this.secondApiNewsCall = newsResponse.data.articles
+                this.finArrNews = _.sortBy(_.concat(firstApiNewsCall ,this.secondApiNewsCall),[function(o) { return o.publishedAt; }])
+                return this.finArrNews.reverse()
+            } catch (error) {
+                console.error(error)
+            } finally {
+                this.loaded = true
+            }
+        },
+        result: function (publishedDate) {
+            return distanceInWords(todaysDate, publishedDate)
         }
     }
 
@@ -99,5 +118,32 @@ export default {
 </script>
 
 <style>
+.list-of-articles {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* margin: auto; */
+    justify-content: space-evenly;
+}
 
+.newspage-article:first-child {
+    color: white;
+    /* max-height: 40% !important;
+    position: relative;  */
+    /* left: 0em !important; */
+    /* bottom: 0em !important;*/
+    max-width: 91.3% !important;
+    margin-bottom: 1em;
+}
+
+.newspage-article {
+    color: white;
+    /* position: relative;
+    left: 0em !important; */
+    /* bottom: 0em !important; */
+    max-width: 20em !important;
+    /* max-width: 15em !important; */
+    margin-bottom: 2em;
+    /* margin-left: 2em; */
+}
 </style>
